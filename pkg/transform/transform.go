@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"net/url"
 	"strings"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // Transformer is a function that transforms text
@@ -73,7 +76,8 @@ func Lower(text string) (string, error) {
 
 // Title converts text to title case
 func Title(text string) (string, error) {
-	return strings.Title(text), nil
+	caser := cases.Title(language.English)
+	return caser.String(text), nil
 }
 
 // Base64Encode encodes text to base64
