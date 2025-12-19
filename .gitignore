@@ -1,5 +1,5 @@
-# Binaries
-clipctl
+# Binaries (root level only)
+/clipctl
 *.exe
 *.dll
 *.so
